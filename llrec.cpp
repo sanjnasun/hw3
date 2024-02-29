@@ -4,33 +4,59 @@
 // Provide your implementation of llpivot below
 //*********************************************
 
+// void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
+// {
+//   Node* temp = head->next;
+//   if(head == NULL)
+//   {
+//     smaller = nullptr;
+//     larger = nullptr;
+//     //head = nullptr;
+//     return;
+//   }
+
+//   //temp = head;
+//   llpivot(head->next, smaller, larger, pivot);
+//   if (head->val <= pivot)
+//   {
+//     head->next = smaller;
+//     smaller = head;
+//     //head = head->next;
+//     head = nullptr;
+//   }
+//   else
+//   {
+//     head->next = larger;
+//     larger = head;
+//     //head = head->next;
+//     head = nullptr;
+//   }
+
+//   //head = temp;
+//   //llpivot(head->next, smaller, larger, pivot);
+//   //head = NULL;
+
+// }
+
+
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot)
 {
-  Node* temp = head->next;
-  if(head == NULL)
-  {
-    smaller = nullptr;
-    larger = nullptr;
-    head = nullptr;
-  }
+    if (head == nullptr) {
+        smaller = nullptr;
+        larger = nullptr;
+        return;
+    }
 
-  //temp = head;
-  if (head->next->val <= pivot)
-  {
-    head->next = smaller;
+    llpivot(head->next, smaller, larger, pivot);
+
+    if (head->val <= pivot) {
+        head->next = smaller;
+        smaller = head;
+    } else {
+        head->next = larger;
+        larger = head;
+    }
+
     
-    smaller = head;
-  
-  }
-  else
-  {
-    head->next = larger;
-    larger = head;
-    //temp = temp->next;
-  }
-
-  head = temp;
-  llpivot(head->next, smaller, larger, pivot);
-  //head = NULL;
-
+    head = nullptr;
 }
