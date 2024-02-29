@@ -68,13 +68,15 @@ private:
   /// Add whatever helper functions and data members you need below
 
   std::vector<T> heap_vector;
-  size_t size_;
+  
   int m;
   PComparator comparator;
+  size_t size_;
+  
 
     
-    void heapifyUp(int index);
-    void heapifyDown(int index);
+  void heapifyUp(int index);
+  void heapifyDown(int index);
 
 
 };
@@ -195,7 +197,7 @@ template <typename T, typename PComparator>
 void Heap<T, PComparator>::heapifyDown(int index) {
     while (true) {
         int left = index * m + 1;
-        if (left >= size_) {
+        if (left >= (int)size_) {
             break;
         }
         int right = std::min(left + m, static_cast<int>(size_));
